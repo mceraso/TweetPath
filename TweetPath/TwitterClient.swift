@@ -39,7 +39,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func logout() {
-        User.currentUser = nil
+        User._currentUser = nil
         deauthorize()
         
         NSNotificationCenter.defaultCenter().postNotificationName(User.userDidLogoutNotification, object: nil)
@@ -63,10 +63,9 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
-    func homeTimeline(success: ([Tweet]) -> (), failure: (NSError) -> () ) {
-        GET("1.1/statuses/home_timeline.json", parameters: nil,
+    func homeTimeline(success: ([Tweet]) -> (), failure: (NSError) -> ()) {
+        GET("1.1/statuses/home_timeline.json", parameters: nil, progress: nil,
             success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
-                // print("Home Timeline: \(response)")
                 
                 let dictionaries = response as! [NSDictionary]
                 let tweets = Tweet.tweetsWithArray(dictionaries)
@@ -78,7 +77,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
 
     func currentAccount(success: (User) -> (), failure: (NSError) -> () ){
-        GET("1.1/account/verify_credentials.json", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+        GET("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
                 let userDictionary = response as! NSDictionary
                 let user = User(dictionary: userDictionary)
             
