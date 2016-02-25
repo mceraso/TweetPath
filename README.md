@@ -41,7 +41,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
-My flu was much more serious than I initially thought and left me incapable of work for 3 days.
+My flu was much more serious than I initially thought and left me incapable of work for 4 days.
 
 ## License
 
