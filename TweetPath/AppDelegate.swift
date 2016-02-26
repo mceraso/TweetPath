@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController")
             
             window?.rootViewController = vc
+        } else {
+            print("there is no current user")
         }
         
         NSNotificationCenter.defaultCenter().addObserverForName(User.userDidLogoutNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (NSNotification) -> Void in

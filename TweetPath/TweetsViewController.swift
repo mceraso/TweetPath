@@ -8,9 +8,9 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
+    @IBOutlet weak var tweetsTableView: UITableView!
     var tweets: [Tweet]!
     
     override func viewDidLoad() {
@@ -22,9 +22,14 @@ class TweetsViewController: UIViewController {
             for tweet in tweets{
                 print(tweet.text!)
             }
-        }, failure: { (error: NSError) -> () in
+            }, failure: { (error: NSError) -> () in
                 print(error.localizedDescription)
         })
+        
+        tweetsTableView.delegate = self
+        tweetsTableView.dataSource = self
+        tweetsTableView.rowHeight = UITableViewAutomaticDimension
+        tweetsTableView.estimatedRowHeight = 120
         
      //   TwitterClient.sharedInstance.currentAccount({ (
      //       user) -> () in
@@ -43,6 +48,25 @@ class TweetsViewController: UIViewController {
     
     @IBAction func onLogoutButton(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tweets != nil {
+            return tweets!.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+        
+        cell.tweet = tweets[indexPath.row]
+        
+        tweetsTableView.reloadData()
+        
+        return cell
+        
     }
 
     /*

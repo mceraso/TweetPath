@@ -39,10 +39,11 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func logout() {
-        User._currentUser = nil
         deauthorize()
         
         NSNotificationCenter.defaultCenter().postNotificationName(User.userDidLogoutNotification, object: nil)
+        
+        User.currentUser = nil
     }
     
     func handleOpenUrl(url: NSURL) {
