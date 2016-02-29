@@ -17,12 +17,11 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
-          //  usernameLabel.text = User.name
-            createdAtLabel.text = tweet.createdAt as? String
+            createdAtLabel.text = tweet.createdAtString
             tweetLabel.text = tweet.text
-          //  profileImageView.setImageWithURL(tweet.User.profileURLString)
-            
-            
+            usernameLabel.text = tweet.name
+            profileImageView.setImageWithURL(tweet.profileImageURL!)
+
         }
     }
     

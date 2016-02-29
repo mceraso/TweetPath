@@ -15,12 +15,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tweetsTableView.reloadData()
         
         TwitterClient.sharedInstance.homeTimeline({ (tweets: [Tweet]) -> () in
             self.tweets = tweets
             
             for tweet in tweets{
                 print(tweet.text!)
+                self.tweetsTableView.reloadData()
             }
             }, failure: { (error: NSError) -> () in
                 print(error.localizedDescription)
@@ -51,8 +53,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tweets != nil {
-            return tweets!.count
+        if let tweets = tweets {
+            return tweets.count
         } else {
             return 0
         }
@@ -63,20 +65,28 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.tweet = tweets[indexPath.row]
         
-        tweetsTableView.reloadData()
-        
         return cell
         
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    let cell = sender as! UITableViewCell
+    let indexPath = tweetsTableView.indexPathForCell(cell)
+    let tweet = tweets![indexPath!.row]
+    
+    let detailViewController = segue.destinationViewController as! DetailViewController
+    detailViewController.tweet = tweet
+    
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+
 
 }
