@@ -62,7 +62,7 @@ My flu was much more serious than I initially thought and left me incapable of w
 
 # Project 5 - *TweetPath*
 
-Time spent: **15** hours spent in total
+Time spent: **25** hours spent in total
 
 ## User Stories
 
@@ -73,7 +73,7 @@ The following **required** functionality is completed:
    - [x] Contains the user header view
    - [x] Contains a section with the users basic stats: # tweets, # following, # followers
 - [x] Home Timeline: Tapping on a user image should bring up that user's profile page
-- [ ] Compose Page: User can compose a new tweet by tapping on a compose button.
+- [x] Compose Page: User can compose a new tweet by tapping on a compose button.
 
 The following **optional** features are implemented:
 
@@ -103,13 +103,15 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/5wrsaiP.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/9XI2X5N.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+No tutorials on how to retweet, favorite, compose, or reply
+No tutorial on how to make multiple segues from a single view controller
 
 ## License
 
