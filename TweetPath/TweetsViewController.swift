@@ -69,6 +69,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    /*@IBAction func onUserProfile(sender: AnyObject) {
+        performSegueWithIdentifier("onUserProfile", sender: nil)
+    }*/
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -77,13 +81,25 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let cell = sender as! UITableViewCell
-    let indexPath = tweetsTableView.indexPathForCell(cell)
-    let tweet = tweets![indexPath!.row]
     
-    let detailViewController = segue.destinationViewController as! DetailViewController
-    detailViewController.tweet = tweet
+    //let bonus = sender as!
+        
+        
+        if segue.identifier == "viewTweetDetails" {
+            let cell = sender as! UITableViewCell
+            let indexPath = tweetsTableView.indexPathForCell(cell)
+            let tweet = tweets![indexPath!.row]
     
+            let detailViewController = segue.destinationViewController as! DetailViewController
+            detailViewController.tweet = tweet
+        }
+        /*else {
+            let userProfileViewController = segue.destinationViewController as! UserProfileViewController
+            userProfileViewController.user = User
+            
+        }*/
+        
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }

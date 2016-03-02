@@ -16,6 +16,10 @@ class Tweet: NSObject {
     var text: String?
     var createdAt: NSDate?
     var createdAtString: String?
+    var bio: String?
+    var followersCount: Int = 0
+    var numberTweets: Int = 0
+    var numberFollowing: Int = 0
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
     
@@ -36,6 +40,12 @@ class Tweet: NSObject {
         tweetUser = dictionary["user"] as? NSDictionary
         name = tweetUser!["name"] as? String
         screenname = tweetUser!["screen_name"] as? String
+        bio = tweetUser!["description"] as? String
+        followersCount = tweetUser!["followers_count"] as! Int
+        numberFollowing = tweetUser!["friends_count"] as! Int
+        numberTweets = tweetUser!["statuses_count"] as! Int
+        
+            
             
         let profileURLString = tweetUser!["profile_image_url"] as? String
             if let profileURLString = profileURLString{
